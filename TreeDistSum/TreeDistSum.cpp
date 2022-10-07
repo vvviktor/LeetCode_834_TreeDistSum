@@ -59,8 +59,8 @@ private:
 
     void FinalPass(TreeNode* node, TreeNode* parent) {
         if (parent) {
-            int uptree_sum = distances_[parent->id] - (distances_[node->id] + node->subtree_size) - 1;
-            distances_[node->id] += uptree_sum + (tree_size_ - 1 - node->subtree_size);
+            int uptree_sum = (distances_[parent->id] - 1) - (distances_[node->id] + node->subtree_size);
+            distances_[node->id] += uptree_sum + ((tree_size_ - 1) - node->subtree_size);
         }
         for (auto& next_node : node->neighbours) {
             if (next_node == parent) {
